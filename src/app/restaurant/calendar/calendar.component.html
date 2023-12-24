@@ -1,0 +1,18 @@
+<h1 mat-dialog-title style="text-align: center">
+  Table number: {{ data.tableInfo.tableNumber }} Capacity:
+  {{ data.tableInfo.personCapacity }} people
+</h1>
+<mat-dialog-content>
+  <full-calendar [options]="calendarOptions" #calendar></full-calendar>
+</mat-dialog-content>
+<mat-dialog-actions [align]="'center'">
+  <mat-icon>warning</mat-icon>
+  <mat-hint>
+    To CREATE a reservation, simply click on a free time slot, and fill the
+    form.</mat-hint
+  >
+  <mat-hint>
+    To EDIT or CANCEL a reservation, click on an existing reservation.
+  </mat-hint>
+  <mat-icon>warning</mat-icon>
+</mat-dialog-actions>

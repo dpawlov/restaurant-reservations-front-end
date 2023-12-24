@@ -1,0 +1,101 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  min-height: 94%;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  width: 65.5rem;
+  box-shadow: 0.5px 6px 18px -7px;
+  font-family: "BoschSans-Regular", "Roboto", sans-serif;
+}
+
+.mat-progress-bar {
+  position: absolute;
+}
+
+.head-image {
+  width: 100%;
+  height: 13rem;
+  object-fit: cover;
+}
+
+.name {
+  height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-family: "BoschSans-Bold", "Roboto", sans-serif;
+}
+
+.raing-work-hours {
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.rating,
+.working-hours > span {
+  flex: 0 1 auto;
+  padding-inline: 1rem;
+}
+
+.rating::after {
+  content: "\e838";
+  color: #ffde03;
+  padding-left: 5px;
+  font-family: Material Icons;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+.description {
+  padding: 1rem;
+}
+
+.tables {
+  width: 100%;
+  min-height: calc(100% - 29rem);
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.tables > th {
+  width: 60px;
+}
+
+table {
+  width: 100%;
+  font-family: "BoschSans-Regular", "Roboto", sans-serif;
+}
+
+.reserve-btn {
+  background-color: #ffcf00;
+  font-family: "BoschSans-Bold", "Roboto", sans-serif;
+}

@@ -1,0 +1,114 @@
+<!-- Loading bar -->
+<ng-container *ngIf="isLoading$ | async">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-container>
+<div class="main-container">
+  <div class="details-container">
+    <ng-container *ngIf="restaurantDetails$ | async as restaurant">
+      <img
+        class="head-image"
+        [src]="restaurant?.image"
+        alt="restaurant picture"
+      />
+      <div class="name">{{ restaurant?.name }}</div>
+      <div class="raing-work-hours">
+        <span class="rating">{{ restaurant?.rating }}</span>
+        <div
+          class="working-hours"
+          *ngIf="restaurant.workingTimes.length > 0; else noWorkingHours"
+        >
+          <span>Open: {{ (restaurant?.workingTimes)![0].startTime }}AM</span>
+          <span>Close: {{ (restaurant?.workingTimes)![0].endTime }}PM</span>
+        </div>
+      </div>
+      <div class="description">
+        {{ restaurant?.description }}
+      </div>
+      <div class="tables">
+        <ng-container>
+          <table mat-table [dataSource]="restaurant.tableInfo">
+            <!-- Table Number Column -->
+            <ng-container matColumnDef="tableNumber">
+              <th mat-header-cell *matHeaderCellDef matTooltip="Table number">
+                <mat-icon>table_bar</mat-icon>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.tableNumber }}
+              </td>
+            </ng-container>
+
+            <!-- Person Capacyty Column -->
+            <ng-container matColumnDef="personCapacity">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                matTooltip="Person Capacity"
+              >
+                <mat-icon>reduce_capacity</mat-icon>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.personCapacity }} people
+              </td>
+            </ng-container>
+
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                matTooltip="Table description"
+                style="text-align: center"
+              >
+                <mat-icon>description</mat-icon>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.description }}
+              </td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="actions">
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                matTooltip="Actions"
+                style="text-align: center"
+              >
+                <mat-icon>drag_indicator</mat-icon>
+              </th>
+              <td mat-cell *matCellDef="let element" align="center">
+                <button
+                  class="reserve-btn"
+                  mat-raised-button
+                  (click)="
+                    openReservationDialog(
+                      element,
+                      (restaurant?.workingTimes)![0].startTime,
+                      (restaurant?.workingTimes)![0].endTime
+                    )
+                  "
+                >
+                  Reserve
+                </button>
+              </td>
+            </ng-container>
+
+            <!-- No Tables column -->
+            <ng-container matColumnDef="no-free-tables">
+              <tr class="mat-row" *matNoDataRow align="center">
+                <td class="mat-cell" colspan="4">No tables available !</td>
+              </tr>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #noWorkingHours>
+  <div>Opens: --:--AM - Closes: --:--PM</div>
+</ng-template>

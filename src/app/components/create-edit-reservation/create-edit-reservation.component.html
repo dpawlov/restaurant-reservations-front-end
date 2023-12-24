@@ -1,0 +1,103 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>
+    {{ this.data.isCreate ? "Create Reservation" : "Edit Reservation" }}
+  </h1>
+  <mat-dialog-content>
+    <form [formGroup]="reservationForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput formControlName="date" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Time</mat-label>
+        <input matInput formControlName="time" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Name and Surname</mat-label>
+        <input
+          matInput
+          placeholder="Ex. John Doe"
+          formControlName="customerName"
+          required
+        />
+        <mat-error
+          *ngIf="this.reservationForm.get('customerName')!.hasError('required')"
+        >
+          Name is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="this.reservationForm.get('customerName')!.hasError('pattern')"
+        >
+          Both names must start with a capital letter!
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Phone number</mat-label>
+        <input
+          matInput
+          type="tel"
+          placeholder="Ex. +359888888888"
+          formControlName="customerPhone"
+          required
+        />
+        <mat-error
+          *ngIf="
+            this.reservationForm.get('customerPhone')!.hasError('required')
+          "
+        >
+          Phone number is <strong>required</strong> !
+        </mat-error>
+        <mat-error
+          *ngIf="this.reservationForm.get('customerPhone')!.hasError('pattern')"
+        >
+          Incorrect phone number !
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Please specify the nuber of guests</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Ex. 5"
+          formControlName="persons"
+          required
+        />
+        <mat-error
+          *ngIf="this.reservationForm.get('persons')!.hasError('required')"
+        >
+          Guest number is <strong>required</strong> !
+        </mat-error>
+        <mat-error *ngIf="this.reservationForm.get('persons')!.hasError('min')">
+          Cannot reserve table for less than 1 guest!
+        </mat-error>
+        <mat-error *ngIf="this.reservationForm.get('persons')!.hasError('max')">
+          Guests number higher than table capacity !
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <ng-container *ngIf="this.data.isCreate; else edit">
+      <button
+        mat-button
+        (click)="createReservation()"
+        [disabled]="!this.reservationForm.valid"
+      >
+        Create Reservation
+      </button>
+    </ng-container>
+    <ng-template #edit>
+      <button
+        mat-button
+        (click)="editReservation()"
+        [disabled]="!this.reservationForm.valid"
+      >
+        Edit Reservation
+      </button>
+      <button mat-button color="warn" (click)="cancelReservation()">
+        Cancel Reservation
+      </button>
+    </ng-template>
+  </mat-dialog-actions>
+</div>

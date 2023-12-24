@@ -1,0 +1,15 @@
+.mat-dialog-title {
+  text-align: center;
+}
+.mat-form-field {
+  margin: 5px 0;
+  width: 100%;
+}
+
+.dialog-container {
+  padding: 25px 25px;
+}
+
+button {
+  margin: 5px 5px;
+}

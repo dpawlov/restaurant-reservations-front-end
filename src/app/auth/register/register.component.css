@@ -1,0 +1,68 @@
+/* register.component.css */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  width: 400px;
+  padding: 40px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-icon {
+  margin-right: 15px;
+  font-size: 24px;
+  color: #888;
+}
+
+input {
+  flex: 1;
+  padding: 12px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.btn-login {
+  background-color: #3498db;
+  color: white;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.btn-login:hover {
+  background-color: #2980b9;
+}
+
+.signup-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* Add styles for the error message */
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}

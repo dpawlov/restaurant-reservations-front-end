@@ -1,0 +1,28 @@
+<!-- register.component.html -->
+<div class="login-container">
+  <div class="login-form">
+    <h2>Register</h2>
+    <form (ngSubmit)="register()">
+      <div class="form-group">
+        <mat-icon class="input-icon">account_circle</mat-icon>
+        <input type="text" id="username" [(ngModel)]="userDto.username" name="username" required placeholder="Enter your username">
+      </div>
+      <div class="form-group">
+        <mat-icon class="input-icon">lock</mat-icon>
+        <input type="password" id="password" [(ngModel)]="userDto.password" name="password" required placeholder="Create a password">
+      </div>
+      <div class="form-group">
+        <mat-icon class="input-icon">lock</mat-icon>
+        <input type="password" id="confirmPassword" [(ngModel)]="userDto.confirmPassword" name="confirmPassword" required placeholder="Confirm a password">
+      </div>
+      
+      <!-- Display error message if passwords do not match -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-login">Register</button>
+      <p class="signup-message">Already have an account? <a routerLink="/login">Login</a></p>
+    </form>
+  </div>
+</div>

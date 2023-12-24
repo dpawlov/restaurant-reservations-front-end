@@ -1,0 +1,25 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="login-form">
+    <h2>Login</h2>
+    <form (ngSubmit)="login()">
+      <div class="form-group">
+        <mat-icon class="input-icon">account_circle</mat-icon>
+        <input type="text" id="username" [(ngModel)]="loginDto.username" name="loginDto.username" required placeholder="Enter your username">
+      </div>
+      <div class="form-group">
+        <mat-icon class="input-icon">lock</mat-icon>
+        <input type="password" id="password" [(ngModel)]="loginDto.password" name="loginDto.password" required placeholder="Enter your password">
+      </div>
+      
+      <!-- Display error message for invalid username or password -->
+      <div *ngIf="loginErrorMessage" class="error-message">
+        {{ loginErrorMessage }}
+      </div>
+
+      <button type="submit" class="btn-login">Login</button>
+
+      <p class="signup-message">Don't have an account? <a routerLink="/register">Sign up now</a></p>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<!-- Loading bar -->
+<ng-container *ngIf="isLoading$ | async">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-container>
+<div class="main-container">
+  <div class="restaurants-container">
+    <div class="options-container">
+      <!-- Sort by rating -->
+      <mat-form-field appearance="fill" class="sort">
+        <mat-label>Sort By Rating</mat-label>
+        <mat-select (selectionChange)="sortByRating($event)">
+          <mat-option value="lowest">
+            {{ "lowest" }}
+          </mat-option>
+          <mat-option value="highest">
+            {{ "highest" }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- Search Field -->
+      <mat-form-field class="search-field">
+        <input
+          matInput
+          type="search"
+          placeholder="search restaurant..."
+          (input)="getSearchResults($event)"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <ng-container *ngIf="allRestaurants$ | async as restaurants">
+      <!-- No restaurants to show -->
+      <ng-container *ngIf="restaurants.length <= 0">
+        <h1 class="no-search">No restaurants found!</h1>
+      </ng-container>
+      <!-- Restaurant Cards -->
+      <mat-card class="card-container" *ngFor="let restaurant of restaurants">
+        <mat-card-header>
+          <mat-card-title matTooltip="{{ restaurant?.name }}">{{
+            restaurant?.name
+          }}</mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          [src]="restaurant?.image"
+          alt="Restaurant picture"
+        />
+        <mat-card-content>
+          <mat-card-subtitle
+            *ngIf="restaurant.workingTimes.length > 0; else noWorkingHours"
+            >Open:
+            {{ restaurant?.workingTimes![0].startTime.substring(0, 5) }}AM -
+            Close:
+            {{
+              restaurant?.workingTimes![0].endTime.substring(0, 5)
+            }}PM</mat-card-subtitle
+          >
+          <p class="clip-chars">
+            {{ restaurant?.description }}
+          </p>
+          <span class="card-rating">{{ restaurant?.rating?.toFixed(1) }}</span>
+          <a
+            mat-button
+            routerLink="details/{{ restaurant?.id }}"
+            class="card-btn"
+            >DETAILS</a
+          >
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #noWorkingHours>
+  <mat-card-subtitle> Opens: --:--AM - Closes: --:--PM </mat-card-subtitle>
+</ng-template>

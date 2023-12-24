@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "BoschSans-Regular";
+  src: url(./assets/fonts/BoschSans-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "BoschSans-Regular-Italic";
+  src: url(./assets/fonts/BoschSans-RegularItalic.ttf) format("truetype");
+}
+@font-face {
+  font-family: "BoschSans-Bold";
+  src: url(./assets/fonts/BoschSans-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "BoschSans-Bold-Italic";
+  src: url(./assets/fonts/BoschSans-BoldItalic.ttf) format("truetype");
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+.search-field.mat-focused .mat-form-field-ripple {
+  background-color: black !important;
+}
+
+.search-field.mat-focused .mat-form-field-label {
+  color: black !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: black !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: black !important;
+}

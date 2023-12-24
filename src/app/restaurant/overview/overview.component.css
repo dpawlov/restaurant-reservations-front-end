@@ -1,0 +1,114 @@
+.main-container {
+  display: flex;
+  justify-content: center;
+  min-height: 94%;
+}
+
+.restaurants-container {
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 65.5rem;
+  box-shadow: 0.5px 6px 18px -7px;
+}
+
+.mat-progress-bar {
+  position: absolute;
+}
+
+.card-container {
+  width: 210px;
+  margin: 10px;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  -o-transition: box-shadow 0.2s ease-in;
+  -ms-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
+
+.card-container:hover {
+  box-shadow: 0px 3px 10px rgb(126, 124, 124);
+}
+
+.mat-card-header {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.mat-card-title {
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: "BoschSans-Bold", "Roboto", sans-serif;
+}
+
+.mat-card-image {
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-rating {
+  font-size: 16px;
+  margin-right: 35%;
+}
+
+.card-rating::after {
+  content: "\e838";
+  color: #ffde03;
+  padding-left: 5px;
+  font-family: Material Icons;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 16px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: "liga";
+}
+
+.clip-chars {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: "BoschSans-Regular", "Roboto", sans-serif;
+}
+
+.card-btn {
+  font-family: "BoschSans-Bold", "Roboto", sans-serif;
+}
+
+.no-search {
+  margin-top: 15rem;
+  margin-left: 25rem;
+}
+
+.options-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sort {
+  width: 25%;
+  margin: 2rem;
+}
+
+.search-field {
+  width: 40%;
+  margin: 2rem;
+}

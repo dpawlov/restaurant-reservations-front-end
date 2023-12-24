@@ -1,0 +1,24 @@
+.mat-toolbar {
+  height: 4.3rem;
+  padding-left: 0;
+  background-color: #eff1f2;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.strip {
+  height: 0.5rem;
+  background: url("../../../assets/Bosch-Supergraphic.svg");
+  background-size: cover;
+}
+
+.logo {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  width: 10rem;
+}
