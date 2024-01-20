@@ -25,6 +25,7 @@ export interface TableInfo {
 
 export interface Reservation {
   id?: number;
+  userId?: number;
   restaurantId: number;
   customerName: string;
   customerPhone: string;

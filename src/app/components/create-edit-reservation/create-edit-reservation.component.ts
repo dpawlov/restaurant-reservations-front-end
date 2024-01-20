@@ -1,5 +1,6 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
 
 import {
   MatDialog,
@@ -64,6 +65,7 @@ export class CreateEditReservationComponent implements OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<CreateEditReservationComponent>,
     private fb: FormBuilder,
+    private authService: AuthService,
     private restaurantService: RestaurantService,
     private dialog: MatDialog
   ) {}
@@ -137,11 +139,10 @@ export class CreateEditReservationComponent implements OnDestroy {
   }
 
   private composeReservationObject(): Reservation {
-    const reqDate = new Date(
-      this.selectedDate.setTime(
-        this.selectedDate.getTime() + 3 * 60 * 60 * 1000
-      )
-    );
+    const reqDate = new Date(this.selectedDate);
+    reqDate.setMinutes(reqDate.getMinutes() - reqDate.getTimezoneOffset());
+    const userId = this.authService.getUserId();
+
     const reqBody: Reservation = {
       tables: [
         {
@@ -150,6 +151,7 @@ export class CreateEditReservationComponent implements OnDestroy {
       ],
       restaurantId: this.data.tableInfo.restaurantId,
       time: reqDate.toISOString(),
+      userId: userId,
       customerName: this.reservationForm.get('customerName')?.value!,
       customerPhone: this.reservationForm.get('customerPhone')?.value!,
       persons: Number(this.reservationForm.get('persons')?.value),

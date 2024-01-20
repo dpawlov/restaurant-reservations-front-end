@@ -22,19 +22,12 @@ export class LoginComponent {
     this.authService.login(this.loginDto)
       .subscribe(
         () => {
-          debugger;
-            // Login successful, navigate to the main page
-            this.router.navigate(['']);
+          // Login successful, navigate to the main page
+          this.router.navigate(['']); // Adjust the route as per your application
         },
-         (error) => {
+        (error) => {
           // Handle login error
-          if (error.status === 403) {
-            // Unauthorized: Invalid username or password
-            this.loginErrorMessage = 'Invalid username or password';
-          } else {
-            // Other error, display a generic message
-            this.loginErrorMessage = 'Login failed';
-          }
+          this.loginErrorMessage = 'Login failed: ' + error.message;
         }
       );
   }
