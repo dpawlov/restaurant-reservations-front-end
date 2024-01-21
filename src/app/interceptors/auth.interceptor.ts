@@ -4,29 +4,39 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  
+  constructor(private router: Router) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    // Retrieve the JWT token from local storage
     const token = localStorage.getItem('jwtToken');
 
-    // Clone the request to include the JWT token in the Authorization header
     const requestClone = request.clone({
       setHeaders: {
         'Content-Type': 'application/json',
-        // Add the Authorization header with the token if it's available
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
     });
 
-    return next.handle(requestClone);
+    return next.handle(requestClone).pipe(
+      catchError((error: HttpErrorResponse) => {
+        // Check if the error status is 403
+        if (error.status === 403) {
+          // Redirect to the login page
+          this.router.navigate(['/login']);
+        }
+        return throwError(error);
+      })
+    );
   }
 }
